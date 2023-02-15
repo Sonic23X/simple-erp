@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Usuarios</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card-body">
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Fecha de creación</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of rows">
+              <td>
+                {{ user.id }}
+              </td>
+              <td>
+                {{ user.name }}
+              </td>
+              <td>
+                {{ user.email }}
+              </td>
+              <td>
+                {{ user.createdAt }}
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="updateMail(user.id)">
+                  Cambiar correo
+                </button>
+                <button class="btn btn-danger ml-2" (click)="deleteUser(user.id)">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Create -->
+        <div class="card card-primary mt-5">
+          <div class="card-header">
+            <h3 class="card-title">Nuevo usuario</h3>
+          </div>
+          <form #userForm="ngForm" (ngSubmit)="create()">
+            <div class="card-body">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="name">
+              </div>
+              <div class="form-group">
+                <label>Correo</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email">
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
